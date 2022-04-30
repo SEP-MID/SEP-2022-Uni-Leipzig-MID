@@ -1,5 +1,6 @@
 /**
- * A example context pad provider.
+ * An example context pad provider.
+ * Shows a delete and edit option at every shape
  */
  export class ExampleContextPadProvider {
 

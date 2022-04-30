@@ -33,6 +33,9 @@ const ElementStyleModule = {
   ]
 };
 
+/**
+ * A module for all example providers
+ */
 const ExampleProviders = {
   __init__: [
     'exampleContextPadProvider',
@@ -51,19 +54,23 @@ const ExampleProviders = {
 })
 export class DiagramComponent implements OnInit, AfterViewInit {
 
+  //get the element from the DOM which is used container for the diagram view
   @ViewChild('container') containerRef: ElementRef;
   private diagram;
 
   constructor() { 
     
   }
+
+  /**
+   * initialize the diagram after view init
+   */
   ngAfterViewInit(): void {
     const options = {
       container: this.containerRef.nativeElement,
       additionalModules: []
     }
     this.diagram = this.createDiagram(options);
-    this.diagram.createShape();
   }
 
   ngOnInit(): void {

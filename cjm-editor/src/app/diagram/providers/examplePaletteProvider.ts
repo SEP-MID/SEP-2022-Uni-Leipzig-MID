@@ -1,3 +1,9 @@
+/**
+ * An example palette pad provider.
+ * Creates a palette with a lasso for selecting several shapes and two with two 
+ * button for creating shapes.
+ */
+
 export class ExamplePaletteProvider {
 
   public $inject = [
