@@ -56,7 +56,9 @@ export class DiagramComponent implements OnInit, AfterViewInit {
 
   //get the element from the DOM which is used container for the diagram view
   @ViewChild('container') containerRef: ElementRef;
-  private diagram;
+
+  private diagram: Diagram;
+  private xOffset = 100;
 
   constructor() { 
     
@@ -71,10 +73,28 @@ export class DiagramComponent implements OnInit, AfterViewInit {
       additionalModules: []
     }
     this.diagram = this.createDiagram(options);
+  
   }
 
   ngOnInit(): void {
     
+  }
+
+  /**
+   * Creates a new shape and adds it to the canvas
+   */
+  public addShape(): void {
+    const elementFactory = this.diagram.get("elementFactory");
+    const canvas = this.diagram.get("canvas");
+    const shape = elementFactory.createShape({
+      x: this.xOffset,
+      y: 100,
+      width: 100,
+      height: 80
+    });
+
+    canvas.addShape(shape);
+    this.xOffset += 150;
   }
 
   private createDiagram(options): Diagram {
