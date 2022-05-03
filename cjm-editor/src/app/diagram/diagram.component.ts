@@ -84,17 +84,21 @@ export class DiagramComponent implements OnInit, AfterViewInit {
    * Creates a new shape and adds it to the canvas
    */
   public addShape(): void {
+    const elRegistry = this.diagram.get("elementRegistry");
+    const modeling = this.diagram.get("modeling");    
     const elementFactory = this.diagram.get("elementFactory");
     const canvas = this.diagram.get("canvas");
-    const shape = elementFactory.createShape({
-      x: this.xOffset,
-      y: 100,
+    
+    const shape = elementFactory.createShape({      
       width: 100,
       height: 80
     });
 
-    canvas.addShape(shape);
+    modeling.createShape(shape, {x: this.xOffset, y: 100}, canvas.getRootElement());
+    //canvas.addShape(shape);
     this.xOffset += 150;
+
+    console.dir(elRegistry.getAll());
   }
 
   private createDiagram(options): Diagram {
